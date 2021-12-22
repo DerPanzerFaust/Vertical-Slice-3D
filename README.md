@@ -20,7 +20,7 @@
 * Alle features worden op een nieuwe aparte branch gepushed en het uiteindelijke product is te vinden op "Master"
 
 ### Spel:
-* Legends of Zelda: Breath of the Wild
+* Legend of Zelda: Breath of the Wild
 
 ==========================
 ### Trello:
