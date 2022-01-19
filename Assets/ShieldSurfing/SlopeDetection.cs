@@ -6,6 +6,9 @@ public class SlopeDetection : MonoBehaviour
 {
     [SerializeField] private Vector3 _origin;
     [SerializeField] private Vector3 _down;
+
+    public GameObject _frontRay;
+    private Vector3 _down2;
     public Vector3 _faceHitPosition { get; private set; }
     public Vector3 _faceHitNormal { get; private set; }
     public Vector3 _faceHitPosition2 { get; private set; }
@@ -38,11 +41,13 @@ public class SlopeDetection : MonoBehaviour
 
         RaycastHit hit2;
 
-        if (Physics.Raycast(_origin + new Vector3(0,0,.2f), _down, out hit2, Mathf.Infinity))
+        _down2 = new Vector3(_frontRay.transform.position.x, (_frontRay.transform.position.y - 10), _frontRay.transform.position.z);
+        if (Physics.Raycast(_frontRay.transform.position, _down2, out hit2, Mathf.Infinity))
         {
-            Debug.DrawLine(_origin, _down, Color.blue, 2.5f);
+            Debug.DrawLine(_frontRay.transform.position, _down2, Color.blue, 2.5f);
 
             _faceHitPosition2 = hit2.point;
+            Debug.Log(_faceHitPosition2);
             _faceHitNormal2 = hit.normal;
 
         }

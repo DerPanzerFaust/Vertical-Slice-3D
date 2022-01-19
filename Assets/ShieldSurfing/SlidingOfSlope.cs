@@ -31,16 +31,16 @@ public class SlidingOfSlope : MonoBehaviour
     {
         if (grounded == true && transform.rotation.x > 0)
         {
-            rb.AddForce(transform.forward * (_speed * GetSlopeSpeed()));
+            rb.AddForce(_slopeDetection._faceHitPosition2 * (_speed * GetSlopeSpeed()));
 
         }
+
         if (transform.rotation.x <= 0.1 && grounded == true)
         {
             Debug.Log(_opposingForce);
             if (_opposingForce < rb.velocity.z)
             {
-                rb.velocity = Vector3.forward*5;
-                rb.AddForce(Vector3.forward*-_opposingForce);
+                rb.AddForce(_slopeDetection._faceHitPosition2 * -_opposingForce);
                 StartCoroutine(_Wait());
             }
         }
@@ -48,9 +48,8 @@ public class SlidingOfSlope : MonoBehaviour
 
     IEnumerator _Wait()
     {
-        yield return new WaitForSeconds(.1f);
         _opposingForce = _opposingForce * 1.01f * Time.deltaTime;
-        yield break;
+        yield return new WaitForSeconds(.5f);
     }
 
     public float GetSlopeSpeed()
@@ -63,7 +62,6 @@ public class SlidingOfSlope : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        //Debug.Log("ENTERD/STAYED IN COLLISION");
         if (other.gameObject.tag == "ground")
         {
             rb.constraints = RigidbodyConstraints.None;
