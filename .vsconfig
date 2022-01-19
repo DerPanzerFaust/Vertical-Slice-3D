@@ -1,13 +1,19 @@
 ﻿{
   "version": "1.0",
 <<<<<<< HEAD
+<<<<<<< HEAD
   "components": [ 
     "Microsoft.VisualStudio.Workload.ManagedGame"
   ]
 } 
 =======
+=======
+>>>>>>> shieldSurfing
   "components": [
     "Microsoft.VisualStudio.Workload.ManagedGame"
   ]
 }
+<<<<<<< HEAD
 >>>>>>> Movement
+=======
+>>>>>>> shieldSurfing
