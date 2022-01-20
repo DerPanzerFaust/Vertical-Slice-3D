@@ -29,32 +29,22 @@ public class SlidingOfSlope : MonoBehaviour
 
     public void Sliding()
     {
+        Vector3 dir = (_slopeDetection._frontRay.transform.position - transform.position).normalized * 5;
+
         if (grounded == true && transform.rotation.x > 0)
         {
-            Vector3 dir = (_slopeDetection._frontRay.transform.position - transform.position).normalized;
-            Vector3 dir2 = transform.forward;
-            Debug.Log(dir);
-            rb.AddForce(dir2* 2);
-            Debug.DrawRay(transform.position, dir2*20, Color.green, Mathf.Infinity);
+            rb.AddForce(dir);
+            Debug.DrawRay(transform.position, dir, Color.green, Mathf.Infinity);
 
         }
 
-        if (transform.rotation.x <= 0.1 && grounded == true)
-        {
-            //Debug.Log(_opposingForce);
-            if (_opposingForce < rb.velocity.z)
-            {
-                rb.AddForce(-(_slopeDetection._faceHitPosition2 * _opposingForce));
-                StartCoroutine(_Wait());
-            }
-        }
+        
     }
 
     IEnumerator _Wait()
     {
         yield return new WaitForSeconds(.1f);
         _opposingForce = _opposingForce / 1.01f;
-        //  Debug.Log(_opposingForce);
     }
 
     public float GetSlopeSpeed()
