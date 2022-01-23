@@ -29,7 +29,7 @@ public class SlopeDetection : MonoBehaviour
         _origin = gameObject.transform.position;
         _down = new Vector3(transform.position.x,(transform.position.y - 10), transform.position.z);
 
-        if (Physics.Raycast(_origin, _down, out hit, Mathf.Infinity))
+        if (UnityEngine.Physics.Raycast(_origin, _down, out hit, Mathf.Infinity))
         {
             Debug.DrawLine(_origin, _down, Color.red, 2.5f);
 
@@ -42,7 +42,7 @@ public class SlopeDetection : MonoBehaviour
         RaycastHit hit2;
 
         _down2 = new Vector3(_frontRay.transform.position.x, (_frontRay.transform.position.y - 10), _frontRay.transform.position.z);
-        if (Physics.Raycast(_frontRay.transform.position, _down2, out hit2, Mathf.Infinity))
+        if (UnityEngine.Physics.Raycast(_frontRay.transform.position, _down2, out hit2, Mathf.Infinity))
         {
             Debug.DrawLine(_frontRay.transform.position, _down2, Color.blue, 2.5f);
 
