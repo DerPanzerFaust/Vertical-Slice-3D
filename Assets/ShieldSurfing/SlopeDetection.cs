@@ -47,7 +47,7 @@ public class SlopeDetection : MonoBehaviour
             Debug.DrawLine(_frontRay.transform.position, _down2, Color.blue, 2.5f);
 
             _faceHitPosition2 = hit2.point;
-            Debug.Log(_faceHitPosition2);
+            //Debug.Log(_faceHitPosition2);
             _faceHitNormal2 = hit.normal;
 
         }
