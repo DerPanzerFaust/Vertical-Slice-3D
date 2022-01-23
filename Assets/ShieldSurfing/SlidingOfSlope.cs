@@ -31,14 +31,26 @@ public class SlidingOfSlope : MonoBehaviour
     {
         Vector3 dir = (_slopeDetection._frontRay.transform.position - transform.position).normalized * 5;
 
-        if (grounded == true && transform.rotation.x > 0)
+        if (grounded == true && transform.rotation.x > 0.01f)
         {
             rb.AddForce(dir);
             Debug.DrawRay(transform.position, dir, Color.green, Mathf.Infinity);
 
         }
 
-        
+        if (transform.rotation.x <= 0.1 && grounded == true)
+        {
+            if (_opposingForce < rb.velocity.z)
+            {
+                rb.AddForce((_slopeDetection._frontRay.transform.position - transform.position) * 0);
+                if (_opposingForce < .7f)
+                {
+                    _opposingForce = 0;
+                }
+                StartCoroutine(_Wait());
+            }
+
+        }
     }
 
     IEnumerator _Wait()
