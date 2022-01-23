@@ -29,7 +29,7 @@ public class SlidingOfSlope : MonoBehaviour
 
     public void Sliding()
     {
-        Vector3 dir = (_slopeDetection._frontRay.transform.position - transform.position).normalized * 5;
+        Vector3 dir = (_slopeDetection._frontRay.transform.position - transform.position).normalized * _speed;
 
         if (grounded == true && transform.rotation.x > 0.01f)
         {

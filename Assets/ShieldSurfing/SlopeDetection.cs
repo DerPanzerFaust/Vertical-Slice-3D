@@ -26,7 +26,7 @@ public class SlopeDetection : MonoBehaviour
     {
         RaycastHit hit;
 
-        _origin = gameObject.transform.position;
+        _origin = transform.localPosition;
         _down = new Vector3(transform.position.x,(transform.position.y - 10), transform.position.z);
 
         if (UnityEngine.Physics.Raycast(_origin, _down, out hit, Mathf.Infinity))
