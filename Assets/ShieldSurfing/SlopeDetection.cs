@@ -8,6 +8,9 @@ public class SlopeDetection : MonoBehaviour
     [SerializeField] private Vector3 _down;
 
     public GameObject _frontRay;
+    public GameObject _LeftRay;
+    public GameObject _RightRay;
+
     private Vector3 _down2;
     public Vector3 _faceHitPosition { get; private set; }
     public Vector3 _faceHitNormal { get; private set; }

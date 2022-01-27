@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class SlidingOfSlope : MonoBehaviour
 {
+    [SerializeField] private GameObject _walkState;
+    [SerializeField] private GameObject _surfState;
+
     [SerializeField] private float _speed = 3;
     private float _slopeSpeed;
 
@@ -27,6 +30,7 @@ public class SlidingOfSlope : MonoBehaviour
     private void Update()
     {
         Sliding();
+        SlideToSides();
     }
 
     public void Sliding()
@@ -65,12 +69,25 @@ public class SlidingOfSlope : MonoBehaviour
         _opposingForce = _opposingForce / 1.01f;
     }
 
-    public float GetSlopeSpeed()
-    {
-        float _slopeAddedSpeed;
-        _slopeAddedSpeed = (_slopeDetection._angleSlope * 1.2f) / 10;
 
-        return _slopeAddedSpeed;
+    public void SlideToSides()
+    {
+        Vector3 Ldir = (_slopeDetection._LeftRay.transform.position - transform.position).normalized * (_speed/2);
+        Debug.DrawRay(transform.position, Ldir, Color.yellow, Mathf.Infinity);
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            rb.AddForce(Ldir);
+        }
+
+
+        Vector3 Rdir = (_slopeDetection._RightRay.transform.position - transform.position).normalized * (_speed/2);
+        Debug.DrawRay(transform.position, Rdir, Color.yellow, Mathf.Infinity);
+
+        if (Input.GetKey(KeyCode.D))
+        {
+            rb.AddForce(Rdir);
+        }
     }
 
     private void OnTriggerStay(Collider other)
