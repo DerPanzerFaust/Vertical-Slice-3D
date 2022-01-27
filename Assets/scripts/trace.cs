@@ -14,6 +14,7 @@ public class trace : MonoBehaviour
     public bool turnalwd = true;
     private float nextshot = 5f;
     private Coroutine LookCoroutine;
+    public GameObject LR;
 
     public void StartRotating()
     {
@@ -32,6 +33,8 @@ public class trace : MonoBehaviour
             Quaternion lookRotation = Quaternion.LookRotation(Target.position - transform.position);
 
             float time = 0;
+            LR.SetActive(true);
+            
 
             while (time < 1)
             {
@@ -50,6 +53,7 @@ public class trace : MonoBehaviour
     {
         yield return new WaitForSeconds(4);
         turnalwd = false;
+        LR.SetActive(false);
         print("4 sec");
         if(Time.time >= nextshot)
         {
@@ -75,6 +79,7 @@ public class trace : MonoBehaviour
     void shoot()
     {
         turnalwd = false;
+        LR.SetActive(false);
         Debug.Log("shhots fired");
 
         RaycastHit hit;
@@ -111,7 +116,8 @@ public class trace : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("enterd");
-           
+            StartRotating();
+
         }
     }
 
