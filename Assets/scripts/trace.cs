@@ -78,7 +78,7 @@ public class trace : MonoBehaviour
         Debug.Log("shhots fired");
 
         RaycastHit hit;
-        if (Physics.Raycast(rangebox.transform.position, rangebox.transform.forward, out hit, range))
+        if (UnityEngine.Physics.Raycast(rangebox.transform.position, rangebox.transform.forward, out hit, range))
         {
             muzzleflash.Play();
 
