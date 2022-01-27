@@ -17,10 +17,12 @@ public class SlidingOfSlope : MonoBehaviour
 
     private void Start()
     {
-
         _slopeDetection = FindObjectOfType<SlopeDetection>();
         rb = gameObject.GetComponent<Rigidbody>();
+
+        rb.AddForce(transform.forward * _speed);
     }
+    
 
     private void Update()
     {
@@ -31,11 +33,15 @@ public class SlidingOfSlope : MonoBehaviour
     {
         Vector3 dir = (_slopeDetection._frontRay.transform.position - transform.position).normalized * _speed;
 
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            rb.AddForce(dir);
+        }
+
         if (grounded == true && transform.rotation.x > 0.01f)
         {
             rb.AddForce(dir);
             Debug.DrawRay(transform.position, dir, Color.green, Mathf.Infinity);
-
         }
 
         if (transform.rotation.x <= 0.1 && grounded == true)
