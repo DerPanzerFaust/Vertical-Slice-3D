@@ -27,11 +27,17 @@ GraphicsSettings:
     m_Shader: {fileID: 0}
   m_LensFlare:
     m_Mode: 1
-    m_Shader: {fileID: 0}
+    m_Shader: {fileID: 102, guid: 0000000000000000f000000000000000, type: 0}
   m_VideoShadersIncludeMode: 2
-  m_AlwaysIncludedShaders: []
+  m_AlwaysIncludedShaders:
+  - {fileID: 4800000, guid: 99bb36e9d2c76874e8e8e2baed6debca, type: 3}
+  - {fileID: 4800000, guid: 99bb36e9d2c76874e8e8e2baed6debca, type: 3}
+  - {fileID: 4800000, guid: 99bb36e9d2c76874e8e8e2baed6debca, type: 3}
+  - {fileID: 4800000, guid: 99bb36e9d2c76874e8e8e2baed6debca, type: 3}
+  - {fileID: 4800000, guid: 99bb36e9d2c76874e8e8e2baed6debca, type: 3}
+  - {fileID: 4800000, guid: 99bb36e9d2c76874e8e8e2baed6debca, type: 3}
   m_PreloadedShaders: []
-  m_SpritesDefaultMaterial: {fileID: 0}
+  m_SpritesDefaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_CustomRenderPipeline: {fileID: 0}
   m_TransparencySortMode: 0
   m_TransparencySortAxis: {x: 0, y: 0, z: 1}
