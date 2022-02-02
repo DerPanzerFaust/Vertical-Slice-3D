@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Physics : MonoBehaviour
+public class Physics_scripts : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private float _gravity = 1f;

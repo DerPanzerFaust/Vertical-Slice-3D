@@ -14,6 +14,7 @@ public class trace : MonoBehaviour
     public bool turnalwd = true;
     private float nextshot = 5f;
     private Coroutine LookCoroutine;
+    public GameObject LR;
 
     public void StartRotating()
     {
@@ -27,23 +28,25 @@ public class trace : MonoBehaviour
 
     private IEnumerator LookAt()
     {
-        if(turnalwd == true)
-        {
-            Quaternion lookRotation = Quaternion.LookRotation(Target.position - transform.position);
-
-            float time = 0;
-
-            while (time < 1)
+        if (turnalwd == true)
+            if (turnalwd == true)
             {
-                transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, time);
+                Quaternion lookRotation = Quaternion.LookRotation(Target.position - transform.position);
 
-                time += Time.deltaTime * Speed;
+                float time = 0;
+                LR.SetActive(true);
 
-                yield return null;
+
+                while (time < 1)
+                {
+                    transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, time);
+
+                    time += Time.deltaTime * Speed;
+
+                    yield return null;
+                }
+
             }
-
-        }
-        
     }
 
     IEnumerator Shooter()
@@ -51,12 +54,14 @@ public class trace : MonoBehaviour
         yield return new WaitForSeconds(4);
         turnalwd = false;
         print("4 sec");
-        if(Time.time >= nextshot)
+        if (Time.time >= nextshot)
+            LR.SetActive(false);
+        print("4 sec");
+        if (Time.time >= nextshot)
         {
             nextshot = Time.time + 1f / firerate;
             shoot();
         }
-       
         yield return new WaitForSeconds(3f);
         Debug.Log("2sec");
         turnalwd = true;
@@ -79,13 +84,15 @@ public class trace : MonoBehaviour
 
         RaycastHit hit;
         if (UnityEngine.Physics.Raycast(rangebox.transform.position, rangebox.transform.forward, out hit, range))
+        LR.SetActive(false);
+        Debug.Log("shhots fired");
+
+        RaycastHit hit1;
+        if (Physics.Raycast(rangebox.transform.position, rangebox.transform.forward, out hit, range))
         {
             muzzleflash.Play();
 
             Debug.Log(hit.transform.name);
-           
-
-          
 
             GameObject impactGO = Instantiate(impacteffect, hit.point, Quaternion.LookRotation(hit.normal));
             Destroy(impactGO, 2f);
@@ -95,10 +102,12 @@ public class trace : MonoBehaviour
         {
             muzzleflash.Play();
 
-            
-           // Target target = hit.transform.GetComponent<Target>();
 
-          
+            // Target target = hit.transform.GetComponent<Target>();
+
+
+
+            // Target target = hit.transform.GetComponent<Target>();
 
             GameObject impactGO = Instantiate(impacteffect, hit.point, Quaternion.LookRotation(hit.normal));
             Destroy(impactGO, 2f);
@@ -111,19 +120,25 @@ public class trace : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("enterd");
-           
+            StartRotating();
+
+
         }
     }
 
 
     private void OnTriggerStay(Collider other)
     {
-       StartCoroutine(Shooter());
+        StartCoroutine(Shooter());
         if (other.CompareTag("Player"))
         {
-           
-            StartRotating();
-        }
-    }
 
+            StartCoroutine(Shooter());
+            if (other.CompareTag("Player"))
+            {
+                StartRotating();
+            }
+        }
+
+    }
 }
