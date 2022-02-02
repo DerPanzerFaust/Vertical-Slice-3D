@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+guid: 9f3645ec729ca1e45b4fd78e8b690ba1
+=======
 guid: 37ac14053f28bbc46b66a7855af806aa
+>>>>>>> origin/max-artdump
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

@@ -8,6 +8,9 @@ public class SlopeDetection : MonoBehaviour
     [SerializeField] private Vector3 _down;
 
     public GameObject _frontRay;
+    public GameObject _LeftRay;
+    public GameObject _RightRay;
+
     private Vector3 _down2;
     public Vector3 _faceHitPosition { get; private set; }
     public Vector3 _faceHitNormal { get; private set; }
@@ -26,7 +29,7 @@ public class SlopeDetection : MonoBehaviour
     {
         RaycastHit hit;
 
-        _origin = gameObject.transform.position;
+        _origin = transform.localPosition;
         _down = new Vector3(transform.position.x,(transform.position.y - 10), transform.position.z);
 
         if (UnityEngine.Physics.Raycast(_origin, _down, out hit, Mathf.Infinity))
